@@ -33,8 +33,11 @@ class CDX11():
             'filename': self.filename
         }
 
-def cdx_query(url, cdx_service=ACCESS_CDX, limit=25, sort='reverse'):
-    r = requests.get(cdx_service, params = { 'url' : url, 'limit': limit, 'sort': sort} )
+def cdx_query(url, cdx_service=ACCESS_CDX, limit=25, sort='reverse', from_ts=None, to_ts=None):
+    p = { 'url' : url, 'limit': limit, 'sort': sort }
+    if from_ts:
+        p['from'] = from_ts
+    r = requests.get(cdx_service, params = p, stream=True )
     if r.status_code == 200:
         for line in r.iter_lines(decode_unicode=True):
             cdx = CDX11(line)
@@ -43,10 +46,13 @@ def cdx_query(url, cdx_service=ACCESS_CDX, limit=25, sort='reverse'):
         print("ERROR! %s" % r)
 
 def cdx_scan(url, cdx_service=ACCESS_CDX, limit=10000):
-    r = requests.get(cdx_service, params = { 'url' : url, 'limit': limit, 'matchType': 'prefix' } )
+    p = { 'url' : url, 'limit': limit, 'matchType': 'prefix' }
+    # Call:
+    r = requests.get(cdx_service, params = p, stream=True )
     if r.status_code == 200:
         for line in r.iter_lines(decode_unicode=True):
             cdx = CDX11(line)
             yield cdx
     elif r.status_code != 404:
         print("ERROR! %s" % r)
+        print(r.text)
