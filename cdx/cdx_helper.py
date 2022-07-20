@@ -37,6 +37,8 @@ def cdx_query(url, cdx_service=ACCESS_CDX, limit=25, sort='reverse', from_ts=Non
     p = { 'url' : url, 'limit': limit, 'sort': sort }
     if from_ts:
         p['from'] = from_ts
+    if to_ts:
+        p['to'] = to_ts
     r = requests.get(cdx_service, params = p, stream=True )
     if r.status_code == 200:
         for line in r.iter_lines(decode_unicode=True):
@@ -46,6 +48,8 @@ def cdx_query(url, cdx_service=ACCESS_CDX, limit=25, sort='reverse', from_ts=Non
         print("ERROR! %s" % r)
 
 def cdx_scan(url, cdx_service=ACCESS_CDX, limit=10000):
+    # Note that OutbackCDX does not support to/from date limits on matchType != exact
+    # "from={timestamp} and to={timestamp} are currently only implemented for exact matches"
     p = { 'url' : url, 'limit': limit, 'matchType': 'prefix' }
     # Call:
     r = requests.get(cdx_service, params = p, stream=True )
