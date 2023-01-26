@@ -1,7 +1,7 @@
 {
-    "VoilaConfiguration": {
-        "template": "material",
-        "preheat_kernel": true
+   "VoilaConfiguration": {
+      "template": "material",
+      "preheat_kernel": true
     },
    "VoilaKernelManager": {
       "preheat_blacklist": [
@@ -12,7 +12,7 @@
          },
          "default": {
             "pool_size": 0
-         },
+         }
       },
       "fill_delay": 0
    }
