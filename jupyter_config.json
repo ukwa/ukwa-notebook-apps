@@ -1,5 +1,19 @@
 {
     "VoilaConfiguration": {
-        "template": "material"
-    }
+        "template": "material",
+        "preheat_kernel": true
+    },
+   "VoilaKernelManager": {
+      "preheat_blacklist": [
+      ],
+      "kernel_pools_config": {
+         "ukwa-holdings-summary-report.ipynb": {
+            "pool_size": 3
+         },
+         "default": {
+            "pool_size": 0
+         },
+      },
+      "fill_delay": 0
+   }
 }
