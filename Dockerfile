@@ -14,7 +14,5 @@ ENV PYTHONPATH=/app
 
 ENTRYPOINT ["voila"]
 
-#CMD ["/app", "--template=gridstack"]
-#CMD ["/app", "--template=material"]
-CMD ["/app", "--no-browser"]
+CMD ["/app", "--no-browser", "--Voila.ip=0.0.0.0" ]
 
