@@ -1,5 +1,6 @@
 {
     "VoilaConfiguration": {
+        "template": "material",
         "preheat_kernel": true
     },
    "VoilaKernelManager": {
