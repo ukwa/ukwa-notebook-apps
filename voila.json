@@ -7,7 +7,7 @@
       ],
       "kernel_pools_config": {
          "ukwa-holdings-summary-report.ipynb": {
-            "pool_size": 3
+            "pool_size": 0
          },
          "default": {
             "pool_size": 0
